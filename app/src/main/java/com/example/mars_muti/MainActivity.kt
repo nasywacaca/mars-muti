@@ -1,57 +1,49 @@
 package com.example.mars_muti
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.mars_muti.databinding.ActivityMainBinding
-import com.example.mars_muti.pertemuan4.FourthActivity
-import com.example.mars_muti.pertemuan5.FifthActivity // Import ini wajib agar FifthActivity tidak merah!
 
 class MainActivity : AppCompatActivity() {
 
-    // Deklarasi variabel binding wajib di sini
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Inisialisasi binding wajib di sini
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        val sharedPref = getSharedPreferences("user_pref", Context.MODE_PRIVATE)
+
+        // Ambil nama username yang disimpan dan tampilkan jika ada
+        val username = sharedPref.getString("username", "User")
+        // binding.tvWelcome.text = "Selamat Datang, $username" // Sesuaikan ID jika ada TextView nama
+
+        // Event Tombol Logout
+        binding.btnLogout.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Apakah Anda yakin ingin keluar?")
+                .setPositiveButton("Ya") { dialog, _ ->
+                    // Hapus semua data di SharedPreferences
+                    val editor = sharedPref.edit()
+                    editor.clear()
+                    editor.apply()
+
+                    dialog.dismiss()
+
+                    // Kembali ke halaman AuthActivity
+                    val intent = Intent(this, AuthActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                .setNegativeButton("Tidak") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
         }
-
-        binding.btnToFourth.setOnClickListener {
-            val intent = Intent(this, FourthActivity::class.java)
-
-            /*tambahkan bagian berikut*/
-            intent.putExtra("name", "Politeknik Caltex Riau")
-            intent.putExtra("from", "Rumbai")
-            intent.putExtra("age", 25)
-
-            startActivity(intent)
-        }
-
-        binding.btnToFifth.setOnClickListener {
-            val intent = Intent(this, FifthActivity::class.java)
-            startActivity(intent)
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.e("onStart", "onStart: (Main Activity) terlihat di layar")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e("onDestroy", "onDestroy: (Main Activity) dihapus dari stack")
     }
 }
