@@ -7,6 +7,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mars_muti.databinding.ActivityMainBinding
 
+// Import Activity dari package sub-folder kamu
+import com.example.mars_muti.pertemuan4.FourthActivity
+import com.example.mars_muti.pertemuan5.FifthActivity // atau nama activity P5 kamu yang sebenarnya
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -16,26 +20,32 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sharedPref = getSharedPreferences("user_pref", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
 
-        // Ambil nama username yang disimpan dan tampilkan jika ada
-        val username = sharedPref.getString("username", "User")
-        // binding.tvWelcome.text = "Selamat Datang, $username" // Sesuaikan ID jika ada TextView nama
+        // 1. Tombol Pertemuan 4
+        binding.btnToFourth.setOnClickListener {
+            val intent = Intent(this, FourthActivity::class.java)
+            startActivity(intent)
+        }
 
-        // Event Tombol Logout
+        // 2. Tombol Pertemuan 5
+        binding.btnToFifth.setOnClickListener {
+            val intent = Intent(this, FifthActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 3. Tombol Logout
         binding.btnLogout.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Logout")
                 .setMessage("Apakah Anda yakin ingin keluar?")
                 .setPositiveButton("Ya") { dialog, _ ->
-                    // Hapus semua data di SharedPreferences
                     val editor = sharedPref.edit()
                     editor.clear()
                     editor.apply()
 
                     dialog.dismiss()
 
-                    // Kembali ke halaman AuthActivity
                     val intent = Intent(this, AuthActivity::class.java)
                     startActivity(intent)
                     finish()
