@@ -1,6 +1,5 @@
 package com.example.mars_muti
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -8,8 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.mars_muti.databinding.ActivityMainBinding
 
 // Import Activity dari package sub-folder kamu
-import com.example.mars_muti.pertemuan4.FourthActivity
-import com.example.mars_muti.pertemuan5.FifthActivity // atau nama activity P5 kamu yang sebenarnya
+import com.example.mars_muti.Home.pertemuan4.FourthActivity
+import com.example.mars_muti.Home.pertemuan5.FifthActivity // atau nama activity P5 kamu yang sebenarnya
+import com.example.mars_muti.Home.pertemuan6.SixthActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +33,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, FifthActivity::class.java)
             startActivity(intent)
         }
+        // tombol pertemuan 6
+        binding.btnToSixth.setOnClickListener {
+            val intent = Intent(this, SixthActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // 3. Tombol Logout
         binding.btnLogout.setOnClickListener {

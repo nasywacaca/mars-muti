@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Tambahkan Izin Internet Sesuai Modul -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,39 +13,47 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Material3.DayNight.NoActionBar"
-        tools:targetApi="31">
+        android:theme="@style/Theme.Marsmuti">
 
-        <!-- AuthActivity dijadikan Launcher -->
+        <!-- BaseActivity dijadikan LAUNCHER (Bypass login sementara) -->
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".BaseActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- MainActivity -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
 
-        <!-- Activity pendukung -->
-        <activity
-            android:name=".pertemuan5.WebViewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".pertemuan4.FourthActivity"
-            android:exported="false" />
-        <activity
-            android:name=".pertemuan5.FifthActivity"
-            android:exported="false" />
         <activity
             android:name=".AuthActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:exported="false" />
+
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="false" />
+
+        <!-- Activity Modul Pertemuan -->
+        <activity
+            android:name=".Home.pertemuan2.SecondActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Home.pertemuan4.FourthActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Home.pertemuan5.FifthActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Home.pertemuan6.SixthActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

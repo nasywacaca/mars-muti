@@ -1,7 +1,6 @@
-package com.example.mars_muti.pertemuan2
+package com.example.mars_muti.Home.pertemuan3
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -10,28 +9,26 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.mars_muti.R
+import com.example.mars_muti.databinding.ActivityThirdBinding
 
-class SecondActivity : AppCompatActivity() {
+class ThirdActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityThirdBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_second)
+        binding = ActivityThirdBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
+ //       val inputNoTujuan = findViewById<EditText>(R.id.inputNoTujuan)
+   //     val btnKirim = findViewById<Button>(R.id.btnKirim)
 
-        val inputNama: EditText = findViewById(R.id.inputNama)
-        val btnSubmit: Button = findViewById(R.id.btnSubmit)
 
-        // 2. Event Click pada btnSubmit
-        btnSubmit.setOnClickListener {
-            val nama = inputNama.text
-            Log.i("Klik btnSubmit", "Tombol berhasil di tekan. Isi dari inputNama = $nama")
-
-            Toast.makeText(this, "Anda telah melakukan klik pada tombol Submit", Toast.LENGTH_SHORT).show()
+            val nomor = binding.inputNoTujuan.text
+            Toast.makeText(this, "Pesan berhasil dikirim ke: $nomor", Toast.LENGTH_SHORT).show()
         }
     }
-}
