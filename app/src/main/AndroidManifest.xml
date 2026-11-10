@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Tambahkan Izin Internet Sesuai Modul -->
+    <!-- Izin Internet untuk Glide -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -21,18 +21,16 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".AuthActivity"
             android:exported="false" />
-
         <activity
             android:name=".SplashScreenActivity"
             android:exported="false" />
@@ -41,19 +39,26 @@
         <activity
             android:name=".Home.pertemuan2.SecondActivity"
             android:exported="false" />
-
         <activity
             android:name=".Home.pertemuan4.FourthActivity"
             android:exported="false" />
-
         <activity
             android:name=".Home.pertemuan5.FifthActivity"
             android:exported="false" />
-
         <activity
             android:name=".Home.pertemuan6.SixthActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".pertemuan_10.TenthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pertemuan11.EleventhActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Message.tutorial.TutorialMessageActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

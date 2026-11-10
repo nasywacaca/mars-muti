@@ -1,6 +1,5 @@
 package com.example.mars_muti.Home.pertemuan5
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mars_muti.databinding.ActivityFifthBinding
@@ -14,10 +13,9 @@ class FifthActivity : AppCompatActivity() {
         binding = ActivityFifthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Klik tombol WebView untuk buka WebViewActivity
-        binding.btnWebView.setOnClickListener { // Jika ID tombol di XML kamu beda (misal btnToWebView), sesuaikan di sini
-            val intent = Intent(this, WebViewActivity::class.java)
-            startActivity(intent)
+        // Aksi tombol kembali di Toolbar
+        binding.toolbar.setNavigationOnClickListener {
+            finish() // Menutup Activity dan kembali ke layar sebelumnya
         }
     }
 }

@@ -13,6 +13,7 @@ class AuthActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -20,11 +21,11 @@ class AuthActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("user_pref", Context.MODE_PRIVATE)
 
         // Cek apakah user sudah pernah login sebelumnya
-        val isLogin = sharedPref.getBoolean("isLogin", false)
-        if (isLogin) {
+        val isLoggedIn = sharedPref.getBoolean("isLogin", false)
+        if (isLoggedIn) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish() // Tutup AuthActivity agar tidak bisa di-back
+            finish()
         }
 
         // 2. Event Tombol Login
@@ -39,7 +40,7 @@ class AuthActivity : AppCompatActivity() {
                 editor.putString("username", username)
                 editor.apply()
 
-                // Pindah ke MainActivity
+                // Pindah ke BaseActivity
                 val intent = Intent(this, BaseActivity::class.java)
                 startActivity(intent)
                 finish()

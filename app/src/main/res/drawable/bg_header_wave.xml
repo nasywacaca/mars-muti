@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="500dp"
+    android:height="110dp"
+    android:viewportWidth="500"
+    android:viewportHeight="110">
+
+    <!-- Path Gelombang Tipis & Pas di Atas -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M 0,0 L 500,0 L 500,70 C 380,105 260,50 130,85 C 70,100 30,90 0,70 Z" />
+</vector>
